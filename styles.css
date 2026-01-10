@@ -126,15 +126,196 @@ body{
 
 /* classrooms grid */
 .section-title{margin-top:18px;margin-bottom:10px;font-weight:700}
+/* Enhanced Classroom UI */
+#classroomList {
+    gap: 24px;
+    margin-top: 20px;
+}
+
+.room-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 160px;
+}
+
+.room-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(43, 110, 246, 0.1);
+}
+
+.room-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 15px;
+}
+
+.room-name {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #1e293b;
+    letter-spacing: -0.5px;
+}
+
+.live-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+
+.dot {
+    height: 6px;
+    width: 6px;
+    background-color: #cbd5e1;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ongoing .dot {
+    background-color: var(--green);
+    box-shadow: 0 0 8px var(--green);
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.4; }
+    100% { opacity: 1; }
+}
+
+.room-status-bar {
+    margin-top: auto;
+    padding: 12px 16px;
+    border-radius: 12px;
+    font-weight: 700;
+    font-size: 13px;
+    text-align: center;
+}
+
+.status-free {
+    background: rgba(239, 68, 68, 0.05);
+    color: var(--red);
+}
+
+.status-ongoing {
+    background: rgba(22, 163, 74, 0.08);
+    color: var(--green);
+}
+
+.room-subject {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
 
 /* events */
-.events-list{display:flex;flex-direction:column;gap:12px}
+/* ===== UPDATED EVENTS PAGE UI ===== */
+.events-grid {
+    display: grid;
+    /* Forces 3 columns on large screens */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 24px;
+    padding: 20px 0;
+}
+
+@media (max-width: 1100px) {
+    .events-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+    .events-grid { grid-template-columns: 1fr; }
+}
+
+.event-card {
+    background: var(--card);
+    border-radius: 20px;
+    padding: 24px;
+    border: 1px solid rgba(0,0,0,0.04);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+    transition: all 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensures all cards in a row have equal height */
+}
+
+.event-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 40px rgba(43, 110, 246, 0.12);
+    border-color: var(--accent);
+}
+
+.event-title {
+    font-size: 20px;
+    font-weight: 800;
+    color: #1e293b;
+    margin-bottom: 4px;
+}
+
+.event-club {
+    color: var(--muted);
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.event-meta-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #64748b;
+}
+
+.meta-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: #f1f5f9;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.register-btn {
+    margin-top: auto; /* Pushes button to the bottom */
+    width: 100%;
+    background: var(--accent);
+    color: white;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 700;
+    text-align: center;
+    text-decoration: none;
+    transition: 0.2s;
+    border: none;
+    cursor: pointer;
+}
+
+.register-btn:hover {
+    background: #1d5bd6;
+    filter: brightness(1.1);
+}
+/* .events-list{display:flex;flex-direction:column;gap:12px}
 .event-row{display:flex;align-items:center;gap:16px;padding:14px}
 .date-chip{width:72px;height:64px;background:rgba(43,110,246,0.06);border-radius:10px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--accent)}
 .date-num{font-weight:800;font-size:18px}
 .date-mon{font-size:12px;color:var(--muted)}
 .tag{background:rgba(11,22,40,0.04);padding:6px 8px;border-radius:8px;font-weight:700;margin-left:8px;font-size:12px}
-.tag.green{background:rgba(16,185,129,0.08);color:var(--green)}
+.tag.green{background:rgba(16,185,129,0.08);color:var(--green)} */
 
 /* buttons */
 .btn{padding:10px 14px;border-radius:10px;border:0;cursor:pointer;font-weight:700}
