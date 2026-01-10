@@ -1,0 +1,106 @@
+{
+  "admin": {
+    "capacity": 50,
+    "count": 0,
+    "updatedAt": 1767963269607
+  },
+  "canteen": {
+    "capacity": 100,
+    "count": 0,
+    "updatedAt": 1767938779806
+  },
+  "classrooms": {
+    "room08": {
+      "endsAt": "11:00",
+      "faculty": "Aaitwade Mam",
+      "status": "ongoing",
+      "subject": "DSA",
+      "year": "SY"
+    }
+  },
+  "events": {
+    "event1": {
+      "date": "2026-01-10",
+      "title": "Techsprint 2026",
+      "venue": "Lab"
+    }
+  },
+  "facilities": {
+    "admin_office": {
+      "status": "open"
+    },
+    "canteen": {
+      "capacity": 80,
+      "count": 40,
+      "name": "Canteen",
+      "status": "open",
+      "updatedAt": ""
+    },
+    "gym": {
+      "status": "open"
+    },
+    "library": {
+      "capacity": 100,
+      "count": 55,
+      "name": "Library",
+      "status": "open",
+      "updatedAt": ""
+    },
+    "study_room": {
+      "capacity": 50,
+      "count": 34,
+      "name": "Library",
+      "status": "open",
+      "updatedAt": ""
+    },
+    "xerox": {
+      "status": "open"
+    }
+  },
+  "gym": {
+    "capacity": 50,
+    "count": 2,
+    "updatedAt": 1767963298434
+  },
+  "issues": {
+    "issueID123": {
+      "category": "",
+      "createdAt": "",
+      "description": "",
+      "facility": "",
+      "title": ""
+    }
+  },
+  "library": {
+    "capacity": 100,
+    "count": 1,
+    "updatedAt": 1767963281467
+  },
+  "study_room": {
+    "capacity": 100,
+    "count": 1,
+    "updatedAt": 1767963291087
+  },
+  "xerox": {
+    "capacity": 50,
+    "count": 1,
+    "status": "open" ,
+    "updatedAt": 1767963303133
+  },
+
+  "checkin_logs": {},
+
+  "crowd_history": {
+    "Library": {
+      "2026-01-08": {
+        "10": { "crowd": 45 },
+        "11": { "crowd": 62 },
+        "12": { "crowd": 88 },
+        "13": { "crowd": 70 },
+        "14": { "crowd": 40 }
+      }
+    }
+  },
+
+  "predictions": {}
+}

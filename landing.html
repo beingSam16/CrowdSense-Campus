@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SmartCampus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="landing.css">
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="badge">✨ Smart Campus Solution</span>
+    <h1>Welcome to <span>SmartCampus</span></h1>
+    <p class="subtitle">
+      Real-time classroom status, college events, and clubs platform.  
+      Stay connected with everything happening on campus.
+    </p>
+  </section>
+
+  <!-- PORTAL SELECTION -->
+  <section class="portals">
+    <h2>Select Your Portal</h2>
+
+    <div class="portal-grid">
+
+      <!-- STUDENT -->
+      <div class="portal-card">
+        <div class="icon blue">🎓</div>
+        <h3>Student Portal</h3>
+        <p>
+          View live classroom status, browse events, explore clubs,
+          and stay updated with the campus calendar.
+        </p>
+        <button class="btn primary" onclick="enterStudent()">
+          Enter as Student →
+        </button>
+      </div>
+
+      <!-- ADMIN -->
+      <div class="portal-card">
+        <div class="icon green">👨‍🏫</div>
+        <h3>Faculty / Admin Portal</h3>
+        <p>
+          Manage lectures, update classroom status, create events,
+          and administer clubs.
+        </p>
+        <button class="btn outline" onclick="enterAdmin()">
+          Enter as Admin →
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <!-- <section class="stats">
+    <div class="stat-card">
+      <h3>6</h3>
+      <p>Active Lectures</p>
+    </div>
+    <div class="stat-card">
+      <h3>12</h3>
+      <p>Upcoming Events</p>
+    </div>
+    <div class="stat-card">
+      <h3>8</h3>
+      <p>Active Clubs</p>
+    </div>
+    <div class="stat-card">
+      <h3>24</h3>
+      <p>Activities This Month</p>
+    </div>
+  </section> -->
+
+  <!-- FOOTER -->
+  <footer>
+    SmartCampus © 2026 ·
+  </footer>
+
+  <script>
+    function enterStudent() {
+      window.location.href = "index.html";
+    }
+
+    function enterAdmin() {
+      window.location.href = "admin-login.html";
+    }
+  </script>
+
+</body>
+</html>

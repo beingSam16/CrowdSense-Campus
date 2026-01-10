@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Scan QR | Campus Monitor</title>
+
+  <link rel="stylesheet" href="styles.css">
+
+  <!-- QR Scanner -->
+  <script src="https://unpkg.com/html5-qrcode"></script>
+
+  <!-- 🔥 Firebase SDKs (MISSING BEFORE) -->
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+
+<body class="scan-page">
+
+<nav class="navbar">
+  <div class="brand">
+    <div class="logo">⚡</div>
+    <div class="brand-text">
+      <div class="brand-title">Campus Monitor</div>
+      <div class="brand-sub">A smart campus operating site</div>
+    </div>
+  </div>
+
+  <ul class="nav-links">
+    <li><a href="index.html">Dashboard</a></li>
+    <li><a class="active" href="scan.html">Scanner</a></li>
+  </ul>
+</nav>
+
+<div class="container">
+  <h1>Scan QR Code</h1>
+  <p class="subtitle">Scan facility QR to check-in</p>
+
+  <div class="qr-container">
+    <div id="reader"></div>
+  </div>
+
+  <a href="index.html" class="btn secondary">← Back to Dashboard</a>
+</div>
+
+<script src="scan.js"></script>
+</body>
+</html>

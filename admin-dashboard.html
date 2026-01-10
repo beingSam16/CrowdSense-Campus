@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus Monitor Admin | Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
+</head>
+<body class="bg-slate-50 font-sans text-slate-900">
+
+<div class="flex min-h-screen">
+    <aside class="w-64 bg-slate-900 text-white flex-shrink-0 hidden md:flex flex-col">
+        <div class="p-6 text-2xl font-bold border-b border-slate-800 flex items-center gap-2">
+            <span class="text-indigo-400"><i class="fas fa-bolt"></i></span>Campus Monitor</div>
+        <nav class="flex-1 p-4 space-y-2">
+            <button onclick="showSection('classroom')" class="nav-link w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition">
+                <i class="fas fa-chalkboard-teacher text-indigo-400"></i> Classroom Manager
+            </button>
+            <button onclick="showSection('events')" class="nav-link w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition">
+                <i class="fas fa-calendar-alt text-indigo-400"></i> Event Manager
+            </button>
+            <button onclick="showSection('clubs')" class="nav-link w-full flex items-center gap-3 p-3 rounded-lg hover:bg-slate-800 transition">
+                <i class="fas fa-users text-indigo-400"></i> Club Information
+            </button>
+        </nav>
+        <div class="p-4 border-t border-slate-800">
+            <button onclick="logout()" class="w-full flex items-center gap-3 p-3 rounded-lg text-red-400 hover:bg-red-500/10 transition">
+                <i class="fas fa-sign-out-alt"></i> Logout
+            </button>
+        </div>
+    </aside>
+
+    <main class="flex-1 overflow-y-auto">
+        <header class="bg-white border-b p-4 px-8 flex justify-between items-center sticky top-0 z-10">
+            <h2 id="sectionTitle" class="text-xl font-semibold">Classroom Manager</h2>
+            <div class="flex items-center gap-4">
+                <span class="text-sm text-slate-500">Admin Session Active</span>
+                <div class="h-8 w-8 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center font-bold">A</div>
+            </div>
+        </header>
+
+        <div class="p-8">
+            <section id="classroomSection" class="section-content">
+                <div class="max-w-4xl bg-white rounded-xl shadow-sm border p-6">
+                    <h3 class="text-lg font-bold mb-6">Override Room Status</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Select Classroom</label>
+                            <select id="classroomSelect" class="input-field">
+                                <option value="classroom20">Classroom 20</option>
+                                <option value="classroom11">Classroom 11</option>
+                                <option value="classroom13">Classroom 13</option>
+                                <option value="classroom14">Classroom 14</option>
+                                <option value="classroom20">Classroom 20</option>
+                                <option value="classroom08">classroom 08</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium mb-1">Subject / Purpose</label>
+                            <input id="subjectInput" placeholder="e.g. CS-302 Lecture" class="input-field">
+                        </div>
+                    </div>
+                    <div class="flex flex-wrap gap-3 mt-6">
+                        <button onclick="markOccupied()" class="btn bg-emerald-600 hover:bg-emerald-700 text-white">
+                            <i class="fas fa-lock mr-2"></i> Mark Occupied
+                        </button>
+                        <button onclick="markFree()" class="btn bg-amber-500 hover:bg-amber-600 text-white">
+                            <i class="fas fa-unlock mr-2"></i> Mark Free
+                        </button>
+                        <button onclick="disableOverride()" class="btn bg-slate-200 hover:bg-slate-300 text-slate-700">
+                            Reset to Schedule
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section id="eventsSection" class="section-content hidden">
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                    <div class="lg:col-span-1 bg-white rounded-xl shadow-sm border p-6 h-fit">
+                        <h3 class="text-lg font-bold mb-4">Add Event</h3>
+                        <div class="space-y-4">
+                            <input id="eventTitle" placeholder="Event Name" class="input-field">
+                            <input id="eventClub" placeholder="Club Name" class="input-field">
+                            <select id="eventType" class="input-field">
+                                <option value="" disabled selected>Select Event Type</option>
+                                <option value="Tech">Tech</option>
+                                <option value="Non-tech">Non-tech</option>
+                                <option value="Hackathon">Hackathon</option>
+                                <option value="Seminar">Seminar</option>
+                                <option value="Workshop">Workshop</option>
+                            </select>
+                            <select id="eventEligibility" placeholder="Eligibility (e.g. All Students)" class="input-field">
+                              
+                              <option value="All">All Students</option>
+                              <option value="All">First Year</option>
+                              <option value="Second Year">Second Year</option>
+                              <option value="Third Year">Third Year</option>
+                              <option value="Fourth Year">Final Year</option>
+                            </select>
+                            <div class="grid grid-cols-2 gap-2">
+                                <input id="eventDate" type="date" class="input-field text-sm">
+                                <input id="eventTime" type="time" class="input-field text-sm">
+                            </div>
+                            <input id="eventVenue" placeholder="Venue" class="input-field">
+                            <textarea id="eventDesc" placeholder="Description..." class="input-field h-24"></textarea>
+                            <button onclick="addEvent()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white p-3 rounded-lg font-bold transition shadow-lg shadow-indigo-200">
+                                Publish Event
+                            </button>
+                        </div>
+                    </div>
+                    <div class="lg:col-span-2 bg-white rounded-xl shadow-sm border p-6">
+                        <h3 class="text-lg font-bold mb-4">Live Events Feed</h3>
+                        <div id="eventList" class="space-y-4 text-sm">
+                            </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="clubsSection" class="section-content hidden">
+                <div class="bg-blue-50 border border-blue-200 p-8 rounded-xl text-center">
+                    <i class="fas fa-tools text-4xl text-blue-400 mb-4"></i>
+                    <h3 class="text-xl font-bold">Club Management</h3>
+                    <p class="text-slate-600">This module is connected to your database. Add club details here.</p>
+                </div>
+            </section>
+        </div>
+    </main>
+</div>
+
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        // You can extend themes here if needed
+      }
+    }
+  }
+</script>
+
+<style type="text/tailwindcss">
+  @layer components {
+    .input-field { 
+        @apply w-full p-2.5 border border-slate-200 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none transition; 
+    }
+    .btn { 
+        @apply px-6 py-2.5 rounded-lg font-semibold transition flex items-center justify-center; 
+    }
+    .nav-link:hover { 
+        @apply text-indigo-400; 
+    }
+  }
+</style>
+
+<script src="admin.js"></script>
+<script>
+    // Tab Switching Logic
+    function showSection(sectionId) {
+        document.querySelectorAll('.section-content').forEach(s => s.classList.add('hidden'));
+        document.getElementById(sectionId + 'Section').classList.remove('hidden');
+        
+        const titles = {
+            'classroom': '🏫 Classroom Manager',
+            'events': '📅 Event Manager',
+            'clubs': '🛡️ Club Information'
+        };
+        document.getElementById('sectionTitle').innerText = titles[sectionId];
+    }
+</script>
+</body>
+</html>

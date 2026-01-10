@@ -1,0 +1,44 @@
+{
+  "classroom11": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  },
+  "classroom12": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  },
+  "classroom13": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  },
+  "classroom14": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  },
+  "classroom20": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  },
+  "room08": {
+    "status": "free",
+    "subject": "",
+    "override": false,
+    "updatedBy": "system",
+    "updatedAt": 0
+  }
+}
