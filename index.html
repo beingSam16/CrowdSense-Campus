@@ -1,410 +1,92 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>CrowdSense Campus</title>
-  <link rel="stylesheet" href="styles.css" />
-  
-
+  <meta charset="UTF-8">
+  <title>SmartCampus</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="landing.css">
 </head>
 <body>
-  <div class="app">
-    <!-- SIDEBAR -->
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="logo">⚡</div>
-        <div class="brand-text">
-          <div class="brand-title">Campus Monitor</div>
-          <div class="brand-sub">A smart campus operating site</div>
-        </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <span class="badge">✨ Smart Campus Solution</span>
+    <h1>Welcome to <span>SmartCampus</span></h1>
+    <p class="subtitle">
+      Real-time classroom status, college events, and clubs platform.  
+      Stay connected with everything happening on campus.
+    </p>
+  </section>
+
+  <!-- PORTAL SELECTION -->
+  <section class="portals">
+    <h2>Select Your Portal</h2>
+
+    <div class="portal-grid">
+
+      <!-- STUDENT -->
+      <div class="portal-card">
+        <div class="icon blue">🎓</div>
+        <h3>Student Portal</h3>
+        <p>
+          View live classroom status, browse events, explore clubs,
+          and stay updated with the campus calendar.
+        </p>
+        <button class="btn primary" onclick="enterStudent()">
+          Enter as Student →
+        </button>
       </div>
 
-      <nav class="nav">
-  <button data-page="dashboard" class="nav-item active">Dashboard</button>
-  <button class="nav-item" onclick="window.location.href='scan.html'">Scanner</button>
-  <!-- <button data-page="library" class="nav-item">Library</button> -->
-  <!-- <button data-page="facilities" class="nav-item">Facilities</button> -->
-  <button data-page="classrooms" class="nav-item">Classrooms</button>
-  <button data-page="events" class="nav-item">Events</button>
-  <button data-page="report" class="nav-item">Report</button>
-  <button class="nav-item" onclick="window.location.href='admin-login.html'">Admin Portal</button>
-</nav>
-
-
-      <div class="sidebar-footer">
-        <div class="sync">Live Sync<br><strong>Realtime</strong></div>
-        
-      </div>
-    </aside>
-
-    <!-- MAIN -->
-    <main class="main">
-
-      <!-- DASHBOARD -->
-      <section id="dashboard" class="page">
-        <header class="page-header">
-          <h1>Dashboard</h1>
-          <p class="lead">Real-time campus facility monitoring</p>
-        </header>
-
-        <div class="summary-cards">
-          <div class="summary">
-            <div id="facOpen" class="num">--</div>
-            <div class="label">Facilities Open</div>
-          </div>
-          <div class="summary">
-            <div id="avgCrowd" class="num">--%</div>
-            <div class="label">Avg. Crowd Level</div>
-          </div>
-        </div>
-
-        <h2 class="section-title">Campus Facilities</h2>
-        <div class="grid grid-3">
-
-          <!-- Library -->
-          <article class="card">
-            <div class="card-head">
-              <div class="card-title">
-                <div>
-                  <div class="title-text">Library</div>
-                  <div class="muted">Live</div>
-                </div>
-              </div>
-              <div id="libraryStatus" class="status-badge open">--</div>
-            </div>
-            <div class="card-body">
-              <div class="muted small">Crowd Level</div>
-              <div class="meter">
-                <div id="libraryMeter" class="meter-bar medium" style="width:0%"></div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Study Room -->
-          <article class="card">
-            <div class="card-head">
-              <div class="card-title">
-                <div>
-                  <div class="title-text">Study Room</div>
-                  <div class="muted">Live</div>
-                </div>
-              </div>
-              <div id="study_roomStatus" class="status-badge open">--</div>
-            </div>
-            <div class="card-body">
-              <div class="muted small">Crowd Level</div>
-              <div class="meter">
-                <div id="study_roomMeter" class="meter-bar low" style="width:0%"></div>
-              </div>
-            </div>
-          </article>
-
-          <!-- Gym -->
-          <article class="card">
-            <div class="card-head">
-              <div class="card-title">
-                <div>
-                  <div class="title-text">Gym</div>
-                   
-                </div>
-              </div>
-              <div id="gymStatus" class="status-badge open">--</div>
-            </div>
-             
-          </article>
-
-          <!-- Xerox -->
-          <article class="card">
-            <div class="card-head">
-              <div class="card-title">
-                <div>
-                  <div class="title-text">Xerox</div>
-                  
-                </div>
-              </div>
-              <div id="xeroxStatus" class="status-badge open">--</div>
-            </div>
-             
-          </article>
-
-          <!-- Admin -->
-          <article class="card">
-            <div class="card-head">
-              <div class="card-title">
-                <div>
-                  <div class="title-text">Admin Office</div>
-                  
-                </div>
-              </div>
-              <div id="admin_officeStatus" class="status-badge open">--</div>
-            </div>
-            
-          </article>
-
-        </div>
-      </section>
-
-      <!-- LIBRARY PAGE -->
-       <section id="library" class="page hidden">
-        <header class="page-header">
-          <h1>Library</h1>
-          <p class="lead">Current occupancy and predictions</p>
-        </header>
-
-        <div class="card large">
-          <div class="card-body">
-            <div class="muted">Current Crowd Level</div>
-            <div class="meter large">
-              <div id="libMeter" class="meter-bar medium" style="width:0%"></div>
-            </div>
-            <div class="row between">
-              <div id="libText" class="muted small">--</div>
-              <div id="libPercent" class="muted small">--%</div>
-            </div>
-
-            <div class="predictions">
-              <div class="pred">
-                <div>Next Hour</div>
-                <div id="pred1" class="pred-pill yellow">--</div>
-              </div>
-              <div class="pred">
-                <div>2 Hours</div>
-                <div id="pred2" class="pred-pill green">--</div>
-              </div>
-              <div class="pred">
-                <div>3 Hours</div>
-                <div id="pred3" class="pred-pill red">--</div>
-              </div>
-            </div>
-
-            <div class="best-time card-note">
-              <strong>Best Time to Visit</strong>
-              <div id="bestTimeText" class="muted small">Loading...</div>
-            </div>
-          </div>
-        </div>
-        <br>
-        <div class="card-list">
-          <div class="card facility">
-            <div class="facility-left"><b>Gym</b></div>
-            <div class="facility-right">
-             <div id="gymStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-
-          <div class="card facility">
-            <div class="facility-left"><b>Xerox</b></div>
-            <div class="facility-right">
-              <div id="xeroxStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-
-          <div class="card facility">
-            <div class="facility-left"><b>Admin Office</b></div>
-            <div class="facility-right">
-             <div id="admin_officeStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- FACILITIES PAGE -->
-      <section id="facilities" class="page hidden">
-        <header class="page-header">
-          <h1>Facilities</h1>
-          <p class="lead">Live status from database</p>
-        </header>
-          <!-- LIBRARY – DETAILED VIEW -->
-<!-- <div class="card large">
-  <h2 class="section-title">Library (Detailed View)</h2>
-
-  <div class="muted">Current Crowd Level</div>
-  <div class="meter large">
-    <div id="libMeter" class="meter-bar medium" style="width:0%"></div>
-  </div>
-
-  <div class="row between">
-    <div id="libText" class="muted small">--</div>
-    <div id="libPercent" class="muted small">--%</div>
-  </div>
-
-  <div class="predictions">
-    <div class="pred">
-      <div>Next Hour</div>
-      <div id="pred1" class="pred-pill yellow">--</div>
-    </div>
-    <div class="pred">
-      <div>2 Hours</div>
-      <div id="pred2" class="pred-pill green">--</div>
-    </div>
-    <div class="pred">
-      <div>3 Hours</div>
-      <div id="pred3" class="pred-pill red">--</div>
-    </div>
-  </div>
-
-  <div class="best-time card-note">
-    <strong>Best Time to Visit</strong>
-    <div id="bestTimeText" class="muted small">Loading...</div>
-  </div>
-</div> -->
-
-        <div class="card-list">
-          <div class="card facility">
-            <div class="facility-left"><b>Gym</b></div>
-            <div class="facility-right">
-             <div id="gymStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-
-          <div class="card facility">
-            <div class="facility-left"><b>Xerox</b></div>
-            <div class="facility-right">
-              <div id="xeroxStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-
-          <div class="card facility">
-            <div class="facility-left"><b>Admin Office</b></div>
-            <div class="facility-right">
-             <div id="admin_officeStatus" class="status-badge open">--</div>
-            </div>
-          </div>
-        </div>
-      </section>
-           <!-- CLASSROOMS PAGE -->
-<section id="classrooms" class="page hidden">
-  <header class="page-header">
-    <h1>Classrooms</h1>
-    <p class="lead">Live lecture status (auto from timetable)</p>
-  </header>
-
-  <!-- SUMMARY -->
-  <div class="summary-cards">
-    <div class="summary">
-      <div id="ongoingCount" class="num">--</div>
-      <div class="label">Lectures Ongoing</div>
-    </div>
-    <div class="summary">
-      <div id="freeCount" class="num">--</div>
-      <div class="label">Rooms Available</div>
-    </div>
-  </div>
-
-  <!-- CLASSROOM LIST (AUTO GENERATED) -->
-  <div id="classroomList" class="grid grid-3"></div>
-</section>
- 
-
-        <!-- <div id="classroomList" class="grid grid-3"></div>
-      </section> -->
-
-      <!-- EVENTS PAGE -->
-<section id="events" class="page hidden">
-
-  <!-- Header -->
-  <div class="events-header">
-    <div>
-      <h1>Events</h1>
-      <p>Discover and register for campus events</p>
-    </div>
-  </div>
-
-  <!-- Filters -->
-  <div class="events-filters">
-    <select id="filterClub"></select>
-    <select id="filterType">
-      <option value="all">All Types</option>
-      <option value="Tech">Tech</option>
-      <option value="Non-Tech">Non-Tech</option>
-      <option value="Hackathon">Hackathon</option>
-      <option value="Seminar">Seminar</option>
-      <option value="Workshop">Workshop</option>
-    </select>
-    <select id="filterEligibility">
-      <option value="all">All Eligibility</option>
-      <option value="All">All Students</option>
-      <option value="All">First Year</option>
-      <option value="Second Year">Second Year</option>
-      <option value="Third Year">Third Year</option>
-      <option value="Fourth Year">Final Year</option>
-    </select>
-  </div>
-
-  <!-- Count -->
-  <div class="events-count">
-    Showing <span id="eventCount">0</span> events
-  </div>
-
-  <!-- Grid -->
-  <div id="eventsContainer" class="events-grid"></div>
-
-</section>
-
-
-
-     <!-- REPORT PAGE -->
-<section id="report" class="page hidden">
-  <header class="page-header">
-    <h1>Report Issue</h1>
-    <p class="lead">Submit complaints</p>
-  </header>
-
-  <div class="card report-card">
-    <form id="reportForm" class="report-form">
-
-      <!-- NEW: FACILITY / BUILDING -->
-      <div class="form-row">
-        <label>Facility / Building</label>
-        <select name="facility" required>
-          <option value="">Select facility</option>
-          <option value="Library">Library</option>
-          <option value="Gym">Gym</option>
-          <option value="Xerox">Xerox Center</option>
-          <option value="Admin Office">Admin Office</option>
-          <option value="Classroom Block">Classroom Block</option>
-          <option value="Hostel">Hostel</option>
-          <option value="Canteen">Canteen</option>
-        </select>
+      <!-- ADMIN -->
+      <div class="portal-card">
+        <div class="icon green">👨‍🏫</div>
+        <h3>Faculty / Admin Portal</h3>
+        <p>
+          Manage lectures, update classroom status, create events,
+          and administer clubs.
+        </p>
+        <button class="btn outline" onclick="enterAdmin()">
+          Enter as Admin →
+        </button>
       </div>
 
-      <!-- CATEGORY -->
-      <div class="form-row">
-        <label>Category</label>
-        <select name="category" required>
-          <option>Cleanliness</option>
-          <option>Maintenance</option>
-          <option>Electricity</option>
-        </select>
-      </div>
+    </div>
+  </section>
 
-      <!-- ISSUE TITLE -->
-      <div class="form-row">
-        <label>Issue</label>
-        <input name="title" placeholder="Short issue title" required />
-      </div>
+  <!-- STATS -->
+  <!-- <section class="stats">
+    <div class="stat-card">
+      <h3>6</h3>
+      <p>Active Lectures</p>
+    </div>
+    <div class="stat-card">
+      <h3>12</h3>
+      <p>Upcoming Events</p>
+    </div>
+    <div class="stat-card">
+      <h3>8</h3>
+      <p>Active Clubs</p>
+    </div>
+    <div class="stat-card">
+      <h3>24</h3>
+      <p>Activities This Month</p>
+    </div>
+  </section> -->
 
-      <!-- DESCRIPTION -->
-      <div class="form-row">
-        <label>Description</label>
-        <textarea name="desc" rows="4" placeholder="Describe the issue in detail" required></textarea>
-      </div>
+  <!-- FOOTER -->
+  <footer>
+    SmartCampus © 2026 ·
+  </footer>
 
-      <button class="btn primary" type="submit">Submit</button>
-    </form>
-  </div>
-</section>
+  <script>
+    function enterStudent() {
+      window.location.href = "index.html";
+    }
 
+    function enterAdmin() {
+      window.location.href = "admin-login.html";
+    }
+  </script>
 
-
-    </main>
-  </div>
-
-  <!-- Firebase SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
-  <script src="app.js"></script>
 </body>
 </html>
